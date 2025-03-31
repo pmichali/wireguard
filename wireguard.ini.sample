@@ -1,0 +1,6 @@
+[DEFAULT]
+subnet = #.#.#
+external_ip = A_DOMAIN_NAME_OR_IP
+dns = CLUSTER_IP_OD_PIHOLE_UDP_SERVICE
+clients = NAMES,OF,CLIENT,DEVICES
+

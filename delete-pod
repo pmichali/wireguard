@@ -1,0 +1,1 @@
+kubectl delete -n wireguard pod `kubectl get pod -n wireguard | cut -f1 -d" " | tail -1`

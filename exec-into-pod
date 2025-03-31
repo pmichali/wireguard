@@ -1,0 +1,1 @@
+kubectl exec -it -n wireguard `kubectl get pod -n wireguard | cut -f1 -d" " | tail -1` -- /bin/bash

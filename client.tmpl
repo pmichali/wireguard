@@ -1,0 +1,28 @@
+# Client configuration
+[Interface]
+# Assign the IP as configured on the server config for this peer
+Address = {{ server.subnet }}.{{ client.index }}/32
+
+# The private key of this client (its corresponding public key is in the server config for this peer)
+PrivateKey = {{ client.pvt_key }}
+
+# DNS server the VPN client should use once connected.
+# In our case this is the ClusterIP of our PI-Hole UDP service
+DNS = {{ server.dns }}
+
+# The VPN server we want to connect to
+[Peer]
+# The public key of the server you want to connect to
+PublicKey = {{ server.pub_key }}
+
+# The IP that points to our WireGuard pod on Kubernetes, could be a K8s LoadBalancer IP, ClusterIP, etc..
+# In our case, using domain that we have registered and have router forwarding
+# port 51820 to the LoadBalancer IP of Wireguard pod
+Endpoint = {{ server.external_ip }}:51820
+
+# What IPs/subnet should be routed through the VPN? Use "0.0.0.0/0, ::/0" for all traffic
+AllowedIPs = 0.0.0.0/0, ::/0
+
+# Keep the connection alive through NAT and firewalls by sending a keepalive packet every 25 seconds
+PersistentKeepalive = 25
+
