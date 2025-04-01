@@ -1,6 +1,13 @@
-STEPS FOR RUNNING WIREGUARD IN KUBERNETES
+Wireguard running on a (home) Kubernetes cluster.
 
-0)
+Details on how to setup and run Wireguard area at:
+
+    https://blog.michali.net/2025/03/31/wireguard-in-kubernetes/
+
+
+OLD NOTES ON SETTING THINGS UP...
+
+0) PREREQUISITES
 Need Pi-Hole server setup.
 Need domain name, with dynamic DNS setup to point to your router.
 Need router configured to forward port 51820 to a LoadBalancer IP that you are
@@ -13,11 +20,11 @@ Run "poetry install" and then "poetry shell" to provide the needed packages
 and setup the virtual environment.
 
 
-1)
+1) TOOLS NEEDED
 Do "brew install wireguard-tools" on Mac, so have wireguard tools to create keys.
 
 
-2)
+2) GENERATE CLIENT KEYS
 Create keys for each client device and the server using the command:
 
     python create-device.py NAME INDEX#
@@ -40,7 +47,7 @@ data/foo.ini
     index = 4
 
 
-3)
+3) DEFINE SERVER CONFIGURATION
 Create a wireguard.ini file that has the following contents (you can use the
 wireguard.ini.sample):
 
@@ -66,7 +73,7 @@ The clients value is a comma separate list of the client names defined in
 step 2 (e.g. foo,bar).
 
 
-4)
+4) BUILD SERVER AND CLIENT CONFIG FILES AND QR CODES
 Create the wireguard-secrets.yaml, client config files, and client QR codes
 by running:
 
@@ -80,7 +87,7 @@ It will also create .conf and .png files in the data sub-directory for
 each of the clients. From the Wireguard client app on each device, You can
 load the .conf file or read the QR code.
 
-5)
+5) STARTING UP WIREGUARD
 Apply the data/wireguard-secrets.yaml and then the wireguard.yaml to start up
 the Wireguard server. Check that the pod is running, You can run the
 following to exec into pod:
@@ -90,7 +97,7 @@ following to exec into pod:
 Then, run "wg show" to see setup.
 
 
-6)
+6) ESTABLISHING CONNECTIONS
 On each client load the corresponding .conf file or scan the QR code, and
 then activate the tunnel. Verify you can access web sites and that traffic
 is (only) going through the tunnel. You should also have the benefit of AD
