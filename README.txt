@@ -54,7 +54,7 @@ wireguard.ini.sample):
     [DEFAULT]
     subnet = #.#.#
     external_ip = A_DOMAIN_NAME_OR_IP
-    dns = CLUSTER_IP_OF_PIHOLE_UDP_SERVICE
+    dns = LOADBALANCER_IP_PIHOLE_SERVICE
     clients = NAMES,OF,CLIENT,DEVICES
 
 Where the subnet is the three of four parts fo IP address for the tunnel IPs
@@ -66,8 +66,7 @@ For the external IP, I use the domain name that I registered and has an IP
 via the dynamic DNS service I use, to point to my router. If you happen to
 have a static IP on the internet (rare), you could use that.
 
-For DNS, we want the cluster IP for the PI-Hole UDP service (not the TCP
-service).
+For DNS, we want the LoadBalancer IP for the PI-Hole service.
 
 The clients value is a comma separate list of the client names defined in
 step 2 (e.g. foo,bar).
