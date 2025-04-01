@@ -47,7 +47,7 @@ wireguard.ini.sample):
     [DEFAULT]
     subnet = #.#.#
     external_ip = A_DOMAIN_NAME_OR_IP
-    dns = CLUSTER_IP_OD_PIHOLE_UDP_SERVICE
+    dns = CLUSTER_IP_OF_PIHOLE_UDP_SERVICE
     clients = NAMES,OF,CLIENT,DEVICES
 
 Where the subnet is the three of four parts fo IP address for the tunnel IPs
